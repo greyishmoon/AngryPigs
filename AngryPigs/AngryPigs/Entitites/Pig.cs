@@ -16,6 +16,7 @@ namespace AngryPigs.Entitites
             //Position = new Vector2(MathHelper.Clamp(Position.X, 0, Kernel. Graphics.Viewport.Width - Width), 
             //    MathHelper.Clamp(Position.Y, 0, GraphicsDevice.Viewport.Height - Height));
             // git test comment
+            //sdfs
 
         }
 
