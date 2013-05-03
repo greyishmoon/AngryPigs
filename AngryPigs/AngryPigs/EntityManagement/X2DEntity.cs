@@ -5,20 +5,16 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace AngryPigs
+namespace AngryPigs.EntityManagement
 {
-    public abstract class RenderableEntity : Entity
+    public abstract class X2DEntity : Entity
     {
         // Image representing the Entity
         private Texture2D mTexture;
         // State of the Entity
         private bool mActive;
 
-        private float mVelocity;
-        private float mAccelleration;
-
-        
-
+       
         public Texture2D Texture
         {
             get { return mTexture; }
@@ -43,33 +39,22 @@ namespace AngryPigs
             get { return Texture.Height; }
         }
 
-        public float Velocity
-        {
-            get { return mVelocity; }
-            set { mVelocity = value; }
-        }
-
-        public float Accelleration
-        {
-            get { return mAccelleration; }
-            set { mAccelleration = value; }
-        }
-
 
         // Initialise method extended
-        public void Initialise(String pEntityName, Vector2 pWorldPosition, Texture2D pSpriteTexture, float pVelocity)
+        public void Initialise(int pUID, String pEntityName, Vector3 pWorldPosition, Texture2D pSpriteTexture, Vector3 pVelocity)
         {
-            base.Initialise(pEntityName, pWorldPosition);
+            base.Initialise(pUID, pEntityName, pWorldPosition);
             Texture = pSpriteTexture;
             Velocity = pVelocity;
-            Accelleration = 0.0f;
+            Accelleration = new Vector3(0,0,0);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, null, Color.White, 0f,
+            spriteBatch.Draw(Texture, Vector2Position, null, Color.White, 0f,
             new Vector2(Width / 2, Height / 2), 1f, SpriteEffects.None, 0f);
         }
+
 
     }
 }

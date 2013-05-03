@@ -107,10 +107,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Entity.cs" />
-    <Compile Include="Engine\IEntity.cs" />
-    <Compile Include="Engine\RenderableEntity.cs" />
-    <Compile Include="Entitites\Pig.cs" />
+    <Compile Include="EntityManagement\Entity.cs" />
+    <Compile Include="EntityManagement\IEntity.cs" />
+    <Compile Include="EntityManagement\X2DEntity.cs" />
+    <Compile Include="GameEntitites\Pig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Kernel.cs" />
@@ -152,7 +152,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Engine\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>

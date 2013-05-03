@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using AngryPigs.Entitites;
+using AngryPigs.GameEntitites;
 
 namespace AngryPigs
 {
@@ -86,7 +86,7 @@ namespace AngryPigs
             // TEMP create game entities
             pigObjectTest = new Pig();
             // TEMP initialise game entities
-            pigObjectTest.Initialise("Pig1", new Vector2(600, 695), Content.Load<Texture2D>("Graphics/Pig1"), 8.0f);
+            pigObjectTest.Initialise(1, "Pig1", new Vector3(600, 695,0), Content.Load<Texture2D>("Graphics/Pig1"), new Vector3(8,0,0));
 
             base.Initialize();
         }
@@ -170,6 +170,8 @@ namespace AngryPigs
             spriteBatch.Draw(backgroundTexture, screenRectangle, Color.White);
         }
 
+
+        // ++++ NEEDS MOVING TO PIG MIND +++++ //
         private void UpdatePlayer(GameTime gameTime)
         {
 
