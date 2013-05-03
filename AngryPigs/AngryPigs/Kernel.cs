@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using AngryPigs.EntityManagement;
 using AngryPigs.GameEntitites;
 
 namespace AngryPigs
@@ -21,12 +22,16 @@ namespace AngryPigs
         #region FIELDS
 
         //Kernel is automatically created and stored as static field - enforces threadsafe singleton pattern
-        private static readonly Kernel instance = new Kernel();
+        private static readonly Kernel singleton = new Kernel();
+
+        //GAME ENGINE COMPONENTS
+        // create new singleton by accessing static method
+        private EntityManager mEntityManager = EntityManager.Instance;
 
         //GRAPHICS
         private Texture2D backgroundTexture;
-        private Texture2D pigTest;
-        private Pig pigObjectTest;
+        private Texture2D pigTexture;
+        private Pig pigObject;
 
         //INPUT
         // Keyboard states used to determine key presses
@@ -73,7 +78,7 @@ namespace AngryPigs
         {
             get
             {
-                return instance;
+                return singleton;
             }
         }
 
@@ -84,9 +89,9 @@ namespace AngryPigs
         protected override void Initialize()
         {
             // TEMP create game entities
-            pigObjectTest = new Pig();
+            pigObject = mEntityManager.RequestEntity<Pig>();
             // TEMP initialise game entities
-            pigObjectTest.Initialise(1, "Pig1", new Vector3(600, 695,0), Content.Load<Texture2D>("Graphics/Pig1"), new Vector3(8,0,0));
+            pigObject.Initialise(new Vector3(600, 695, 0), Content.Load<Texture2D>("Graphics/Pig1"), new Vector3(8, 0, 0));
 
             base.Initialize();
         }
@@ -101,7 +106,7 @@ namespace AngryPigs
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             backgroundTexture = Content.Load<Texture2D>("Graphics/Background 1366x768");
-            pigTest = Content.Load<Texture2D>("Graphics/Pig1");
+            pigTexture = Content.Load<Texture2D>("Graphics/Pig1");
 
         }
 
@@ -147,9 +152,8 @@ namespace AngryPigs
 
             spriteBatch.Begin();
             DrawScenery();
-            spriteBatch.Draw(pigTest, new Rectangle(500, 500, 70, 64), Color.White);
             // TEMP draw game entities
-            pigObjectTest.Draw(spriteBatch);
+            pigObject.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -176,7 +180,7 @@ namespace AngryPigs
         {
 
             // update player
-            pigObjectTest.Update(gameTime);
+            pigObject.Update(gameTime);
 
             //// Get Thumbstick Controls
             //pigObjectTest.Position = new Vector2(currentGamePadState.ThumbSticks.Left.X * pigObjectTest.Velocity, pigObjectTest.Position.Y);
@@ -186,17 +190,18 @@ namespace AngryPigs
             if (currentKeyboardState.IsKeyDown(Keys.A) ||
             currentGamePadState.DPad.Left == ButtonState.Pressed)
             {
-                pigObjectTest.MoveLeft();
+                pigObject.MoveLeft();
             }
             if (currentKeyboardState.IsKeyDown(Keys.D) ||
             currentGamePadState.DPad.Right == ButtonState.Pressed)
             {
-                pigObjectTest.MoveRight();
+                pigObject.MoveRight();
             }
             if (currentKeyboardState.IsKeyDown(Keys.W) ||
             currentGamePadState.DPad.Up == ButtonState.Pressed)
             {
-                // IMPLEMENT JUMP
+                int i = 0;
+                i++;
             }
             if (currentKeyboardState.IsKeyDown(Keys.S) ||
             currentGamePadState.DPad.Down == ButtonState.Pressed)

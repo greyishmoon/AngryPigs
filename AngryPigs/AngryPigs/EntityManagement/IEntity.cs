@@ -10,7 +10,8 @@ namespace AngryPigs.EntityManagement
     interface IEntity
     {
         int ID { get; }
-        void Initialise(int pUID, string pEntityName, Microsoft.Xna.Framework.Vector3 pWorldPosition);
+        void SetUp(int pUID, string pEntityName);
+        void Initialise(Microsoft.Xna.Framework.Vector3 pWorldPosition);
         string Name { get; }
         Microsoft.Xna.Framework.Vector3 Orientation { get; set; }
         Microsoft.Xna.Framework.Vector3 Position { get; }

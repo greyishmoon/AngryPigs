@@ -10,6 +10,9 @@ namespace AngryPigs.EntityManagement
 
     public abstract class Entity : IEntity
     {
+
+        #region FIELDS
+
         // unique ID of entity
         private int mID;
         // unique name of the entity
@@ -20,6 +23,9 @@ namespace AngryPigs.EntityManagement
         private Vector3 mVelocity;
         private Vector3 mAccelleration;
 
+        #endregion
+
+        #region PROPERTIES
 
         public int ID
         {
@@ -61,12 +67,50 @@ namespace AngryPigs.EntityManagement
             set { mAccelleration = value; }
         }
 
-        public void Initialise(int pUID, String pEntityName, Vector3 pWorldPosition)
+        #endregion
+
+        #region CONSTRUCTOR
+
+        protected Entity()
         {
-            pUID = mID;
+
+        }
+
+        #endregion
+
+        #region INITIALISE
+
+        // Set up unique ID and name seperate to game specific initialisation
+        public void SetUp(int pID, String pEntityName)
+        {
+            mID = pID;
             mName = pEntityName;
+        }
+
+        // base initialise - world position
+        public void Initialise(Vector3 pWorldPosition)
+        {
+            
             mWorldPosition = pWorldPosition;
         }
+
+        #endregion
+
+        #region METHODS
+
+        //METHODS
+
+        #endregion
+
+
+
+
+        
+
+
+        
+
+        
 
         public abstract void Update(GameTime time);
     }

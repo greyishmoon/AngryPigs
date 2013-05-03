@@ -41,9 +41,9 @@ namespace AngryPigs.EntityManagement
 
 
         // Initialise method extended
-        public void Initialise(int pUID, String pEntityName, Vector3 pWorldPosition, Texture2D pSpriteTexture, Vector3 pVelocity)
+        public void Initialise(Vector3 pWorldPosition, Texture2D pSpriteTexture, Vector3 pVelocity)
         {
-            base.Initialise(pUID, pEntityName, pWorldPosition);
+            base.Initialise(pWorldPosition);
             Texture = pSpriteTexture;
             Velocity = pVelocity;
             Accelleration = new Vector3(0,0,0);
